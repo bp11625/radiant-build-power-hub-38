@@ -12,8 +12,8 @@ const AboutUs = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="relative h-[500px] rounded-lg overflow-hidden">
           <img
-            src="/lovable-uploads/eb3c17ee-a759-4377-ba92-19ff75a909a7.png"
-            alt="Construction corridor"
+            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            alt="Modern construction site"
             className="w-full h-full object-cover"
           />
         </div>
