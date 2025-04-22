@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -20,7 +19,7 @@ import {
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
-import { Construction, Sun, Power, Buildings, Building } from "lucide-react";
+import { Construction, Sun, Power, Building } from "lucide-react";
 
 const ProjectEnquiry = () => {
   const { toast } = useToast();
@@ -59,7 +58,7 @@ const ProjectEnquiry = () => {
             <span className="md:hidden">Solar</span>
           </TabsTrigger>
           <TabsTrigger value="infrastructure" className="flex gap-2 items-center">
-            <Buildings className="w-4 h-4" />
+            <Building className="w-4 h-4" />
             <span className="hidden md:inline">Infrastructure</span>
             <span className="md:hidden">Infra</span>
           </TabsTrigger>
@@ -175,9 +174,7 @@ const ProjectEnquiry = () => {
               </div>
             </TabsContent>
 
-            {/* Similar structure for other tabs */}
             <TabsContent value="civil">
-              {/* Civil foundations form fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
@@ -201,12 +198,10 @@ const ProjectEnquiry = () => {
                     </FormItem>
                   )}
                 />
-                {/* Add other civil form fields similarly */}
               </div>
             </TabsContent>
 
             <TabsContent value="solar">
-              {/* Solar erection form fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
@@ -221,11 +216,8 @@ const ProjectEnquiry = () => {
                     </FormItem>
                   )}
                 />
-                {/* Add other solar form fields similarly */}
               </div>
             </TabsContent>
-
-            {/* Add remaining tab contents with similar structure */}
           </form>
         </Form>
       </Tabs>
@@ -234,4 +226,3 @@ const ProjectEnquiry = () => {
 };
 
 export default ProjectEnquiry;
-
