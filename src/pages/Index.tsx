@@ -5,6 +5,7 @@ import { Construction, Sun, Zap, Factory, Truck } from "lucide-react";
 import ProjectEnquiry from "../components/home/ProjectEnquiry";
 import AboutUs from "../components/home/AboutUs";
 import Footer from "../components/about/Footer";
+import CounterSection from "../components/home/CounterSection";
 
 const Index = () => {
   return (
@@ -45,6 +46,9 @@ const Index = () => {
 
       {/* About Us Section */}
       <AboutUs />
+      
+      {/* Counter Section */}
+      <CounterSection />
 
       {/* Project Enquiry Section */}
       <ProjectEnquiry />
