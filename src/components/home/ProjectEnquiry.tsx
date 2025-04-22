@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
-import { Construction, SolarPanel, TransmissionTower, Infrastructure, Building } from "lucide-react";
+import { Construction, Sun, Power, Buildings, Building } from "lucide-react";
 
 const ProjectEnquiry = () => {
   const { toast } = useToast();
@@ -54,17 +54,17 @@ const ProjectEnquiry = () => {
             <span className="md:hidden">Civil</span>
           </TabsTrigger>
           <TabsTrigger value="solar" className="flex gap-2 items-center">
-            <SolarPanel className="w-4 h-4" />
+            <Sun className="w-4 h-4" />
             <span className="hidden md:inline">Solar Erection</span>
             <span className="md:hidden">Solar</span>
           </TabsTrigger>
           <TabsTrigger value="infrastructure" className="flex gap-2 items-center">
-            <Infrastructure className="w-4 h-4" />
+            <Buildings className="w-4 h-4" />
             <span className="hidden md:inline">Infrastructure</span>
             <span className="md:hidden">Infra</span>
           </TabsTrigger>
           <TabsTrigger value="transmission" className="flex gap-2 items-center">
-            <TransmissionTower className="w-4 h-4" />
+            <Power className="w-4 h-4" />
             <span className="hidden md:inline">Transmission</span>
             <span className="md:hidden">Trans</span>
           </TabsTrigger>
@@ -234,3 +234,4 @@ const ProjectEnquiry = () => {
 };
 
 export default ProjectEnquiry;
+
