@@ -1,3 +1,5 @@
+
+import { useState } from "react";
 import { ArrowLeft, ArrowRight, Sun, Construction, Zap, Factory, Truck } from "lucide-react";
 import {
   Carousel,
@@ -5,6 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 import { useAutoplayCarousel } from "./AutoplayCarousel";
 
