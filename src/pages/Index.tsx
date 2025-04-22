@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Construction, Sun, Zap, Factory, Truck } from "lucide-react";
+import ProjectEnquiry from "../components/home/ProjectEnquiry";
 
 const Index = () => {
   return (
@@ -30,11 +31,14 @@ const Index = () => {
               <Link to="/about">
                 <Button className="bg-yellow-500 hover:bg-yellow-600 text-black">Learn About Us</Button>
               </Link>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-800">Our Services</Button>
+              <Button variant="outline" className="bg-white text-blue-800 hover:bg-blue-800 hover:text-white border-white transition-colors">Our Services</Button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Project Enquiry Section */}
+      <ProjectEnquiry />
 
       {/* Services Overview */}
       <div className="py-20 container mx-auto px-4">
