@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Construction, Sun, Zap, Factory, Truck } from "lucide-react";
 import ProjectEnquiry from "../components/home/ProjectEnquiry";
+import AboutUs from "../components/home/AboutUs";
+import Footer from "../components/about/Footer";
 
 const Index = () => {
   return (
@@ -35,6 +37,12 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* About Us Section */}
+      <AboutUs />
+
+      {/* Project Enquiry Section */}
+      <ProjectEnquiry />
 
       {/* Core Services Section */}
       <div className="py-16 container mx-auto px-4">
@@ -92,8 +100,8 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Project Enquiry Section */}
-      <ProjectEnquiry />
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
