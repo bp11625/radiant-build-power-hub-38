@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Construction, Sun, Zap, Factory, Truck } from "lucide-react";
@@ -37,40 +36,64 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Project Enquiry Section */}
-      <ProjectEnquiry />
+      {/* Core Services Section */}
+      <div className="py-16 container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-8 text-[#1a3c6b]">
+          Our Core Services
+          <div className="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
+        </h2>
 
-      {/* Services Overview */}
-      <div className="py-20 container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-16">Our Core Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <Sun className="h-12 w-12 text-yellow-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Solar Energy</h3>
-            <p className="text-gray-600">Renewable energy solutions for residential and commercial projects</p>
+        <div className="text-center mb-12">
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+            From building impactful assets to empowering lives through self-reliance and sustainability, our vision is to drive progress rooted in goodness.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="text-center p-6 group">
+            <div className="mb-6 flex justify-center">
+              <Sun className="h-16 w-16 text-yellow-500" />
+            </div>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Energy & Utilities</h3>
+            <p className="text-gray-600">
+              Powering a sustainable future with clean energy solutions.
+            </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <Construction className="h-12 w-12 text-blue-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Construction</h3>
-            <p className="text-gray-600">End-to-end construction services for commercial and industrial clients</p>
+
+          <div className="text-center p-6 group">
+            <div className="mb-6 flex justify-center">
+              <Construction className="h-16 w-16 text-blue-600" />
+            </div>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Construction</h3>
+            <p className="text-gray-600">
+              Building world-class infrastructures and enduring legacies.
+            </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <Zap className="h-12 w-12 text-red-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Electrical Power</h3>
-            <p className="text-gray-600">Power plant design, installation and maintenance services</p>
+
+          <div className="text-center p-6 group">
+            <div className="mb-6 flex justify-center">
+              <Zap className="h-16 w-16 text-red-500" />
+            </div>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Power Plant</h3>
+            <p className="text-gray-600">
+              Delivering reliable and efficient energy to keep the world running.
+            </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <Factory className="h-12 w-12 text-gray-700 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Fabrication</h3>
-            <p className="text-gray-600">Custom metal fabrication and manufacturing solutions</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-lg transition-all">
-            <Truck className="h-12 w-12 text-green-600 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Logistics</h3>
-            <p className="text-gray-600">Efficient transportation and supply chain management</p>
+
+          <div className="text-center p-6 group">
+            <div className="mb-6 flex justify-center">
+              <Truck className="h-16 w-16 text-green-600" />
+            </div>
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Logistics</h3>
+            <p className="text-gray-600">
+              Driving global connectivity with smart, efficient, and reliable solutions.
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Project Enquiry Section */}
+      <ProjectEnquiry />
     </div>
   );
 };
