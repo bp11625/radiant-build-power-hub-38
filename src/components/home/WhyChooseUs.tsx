@@ -1,46 +1,47 @@
 
-import { settings, truck, shieldCheck, microchip, headphones, fileText } from "lucide-react";
+import { Settings, Truck, ShieldCheck, Microchip, Headphones, FileText } from "lucide-react";
 
 const FEATURES = [
   {
-    icon: "settings",
+    icon: "Settings",
     title: "Customize Product",
     desc: "We help each other, wherever we are. That makes perform easier."
   },
   {
-    icon: "truck",
+    icon: "Truck",
     title: "On Time Delivery",
     desc: "As you might assume, joining this industry provides new opportunities."
   },
   {
-    icon: "shield-check",
+    icon: "ShieldCheck",
     title: "Quality Assurance",
     desc: "You are able to easily utilize our interactive map to find the nearest office."
   },
   {
-    icon: "microchip",
+    icon: "Microchip",
     title: "New Technologies",
     desc: "If you are in logistics, assume to work with 3–D graphics."
   },
   {
-    icon: "headphones",
+    icon: "Headphones",
     title: "24/7 Support",
     desc: "Our specialists work day and night to solve all your cargo-related issues."
   },
   {
-    icon: "file-text",
+    icon: "FileText",
     title: "Manual Testing",
     desc: "Our document maintenance strategy is dependable."
   }
 ];
 
-const ICONS = {
-  "settings": require("lucide-react").settings,
-  "truck": require("lucide-react").truck,
-  "shield-check": require("lucide-react").shieldCheck,
-  "microchip": require("lucide-react").microchip,
-  "headphones": require("lucide-react").headphones,
-  "file-text": require("lucide-react").fileText,
+// Map of icon names to icon components
+const ICONS_MAP = {
+  "Settings": Settings,
+  "Truck": Truck,
+  "ShieldCheck": ShieldCheck,
+  "Microchip": Microchip,
+  "Headphones": Headphones,
+  "FileText": FileText,
 };
 
 export default function WhyChooseUs() {
@@ -62,14 +63,14 @@ export default function WhyChooseUs() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 border-t border-gray-600 divide-y md:divide-y-0 md:divide-x divide-gray-600">
           {FEATURES.map((f, i) => {
-            const Icon = require("lucide-react")[f.icon.charAt(0).toUpperCase() + f.icon.slice(1).replace("-", "")];
+            const IconComponent = ICONS_MAP[f.icon];
             return (
               <div key={i}
                 className={`flex flex-col items-start gap-5 px-8 py-8 bg-black/10 transition hover:bg-black/20 max-md:border-b md:border-r border-gray-700`}
                 style={{ minHeight: 230 }}
               >
                 <div className="rounded-full bg-blue-900/40 p-3 mb-2">
-                  <Icon size={38} className="text-blue-200" strokeWidth={2.5}/>
+                  <IconComponent size={38} className="text-blue-200" strokeWidth={2.5}/>
                 </div>
                 <h4 className="text-xl font-semibold text-white">{f.title}</h4>
                 <p className="text-gray-400">{f.desc}</p>
