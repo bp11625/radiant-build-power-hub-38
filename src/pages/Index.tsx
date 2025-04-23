@@ -1,4 +1,3 @@
-
 import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
@@ -11,7 +10,7 @@ export default function Index() {
   // Video sources for hero background
   const HERO_VIDEOS = [
     "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://www.w3schools.com/html/movie.mp4",
+    "https://www.w3schools.com/html/movie.mp4", 
     "https://www.w3schools.com/html/mov_bbb.mp4"
   ];
 
@@ -21,7 +20,7 @@ export default function Index() {
       <main>
         {/* Hero Section */}
         <section className="relative h-[600px] overflow-hidden">
-          {/* The grid of hovering videos as background */}
+          {/* Full-width video grid */}
           <div className="absolute inset-0 w-full h-full flex z-0">
             {HERO_VIDEOS.map((src, i) => (
               <div
@@ -34,19 +33,16 @@ export default function Index() {
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  autoPlay
                   className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500"
-                  onMouseOver={e => e.currentTarget.play()}
-                  onMouseOut={e => e.currentTarget.pause()}
                   poster="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=40"
                 />
-                {/* Optional: subtle dark overlay on each video for text readability */}
+                {/* Dark overlay for text readability */}
                 <div className="absolute inset-0 bg-black/40 pointer-events-none" />
               </div>
             ))}
           </div>
-          {/* Overall overlay for whole hero area */}
-          <div className="absolute inset-0 bg-black/40 z-10"></div>
+
           {/* Hero Content */}
           <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-start text-white">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
