@@ -16,14 +16,9 @@ const navLinks = [
   { to: "/clients", label: "Clients", icon: <Users size={20} /> },
 ];
 
-export default function MainNavbar({ showContact = false }: MainNavbarProps) {
+export default function MainNavbar({ showContact = true }: MainNavbarProps) {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
-  const isContactPage = location.pathname === "/contact";
-  
-  // Only show Contact in navbar on home or contact page
-  const shouldShowContact = isHomePage || isContactPage || showContact;
-  
+
   return (
     <nav className="bg-white shadow-sm py-4 w-full sticky top-0 z-30">
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -47,20 +42,19 @@ export default function MainNavbar({ showContact = false }: MainNavbarProps) {
               {link.label}
             </Link>
           ))}
-          {shouldShowContact && (
-            <Link
-              to="/contact"
-              className={cn(
-                "font-medium flex items-center gap-1 transition-colors",
-                location.pathname === "/contact"
-                  ? "text-blue-800 border-b-2 border-blue-800"
-                  : "text-gray-600 hover:text-blue-800"
-              )}
-            >
-              <Mail size={20} />
-              Contact
-            </Link>
-          )}
+          {/* Always show Contact in the navbar */}
+          <Link
+            to="/contact"
+            className={cn(
+              "font-medium flex items-center gap-1 transition-colors",
+              location.pathname === "/contact"
+                ? "text-blue-800 border-b-2 border-blue-800"
+                : "text-gray-600 hover:text-blue-800"
+            )}
+          >
+            <Mail size={20} />
+            Contact
+          </Link>
         </div>
       </div>
     </nav>

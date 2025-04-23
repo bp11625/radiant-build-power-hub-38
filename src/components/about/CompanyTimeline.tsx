@@ -4,46 +4,48 @@ import { Calendar as CalendarIcon, ArrowLeft, ArrowRight } from "lucide-react";
 
 const timelineData = [
   {
+    year: "2002",
+    title: "Company founded",
+    description: "Ratan Constructions began with a vision to set new standards in engineering excellence.",
+  },
+  {
+    year: "2006",
+    title: "First Infrastructure Success",
+    description: "Completed first landmark commercial infra project.",
+  },
+  {
     year: "2010",
-    title: "Founded",
-    description: "Company founded. Embarked on our mission for engineering excellence.",
-  },
-  {
-    year: "2013",
-    title: "First Major Project",
-    description: "Successfully completed our first major transmission project.",
-  },
-  {
-    year: "2017",
     title: "Expansion",
-    description: "Expanded to include solar and substation sectors.",
+    description: "Expanded into solar, substation, and telecom sectors—diversifying our expertise.",
   },
   {
-    year: "2022",
-    title: "Innovation Award",
-    description: "Recognized for innovative, sustainable solutions in infrastructure.",
+    year: "2015",
+    title: "100+ Projects",
+    description: "Surpassed 100 projects, growing our skilled workforce and reputation.",
   },
+  {
+    year: "2019",
+    title: "Award-Winning Safety Record",
+    description: "Received regional awards for safety & sustainable practices.",
+  },
+  {
+    year: "2024",
+    title: "Innovation & Future",
+    description: "Leveraging technology for smarter, greener, more resilient solutions.",
+  }
 ];
 
 const CompanyTimeline = () => {
-  // Index of the first visible event (like a carousel)
   const [startIdx, setStartIdx] = useState(0);
-  const visibleCount = 2; // Show at most 2 at once for mobile/horizontal scroll
+  const visibleCount = 3;
 
-  const handlePrev = () => {
-    setStartIdx((idx) => (idx === 0 ? 0 : idx - 1));
-  };
-
-  const handleNext = () => {
-    setStartIdx((idx) =>
-      idx + visibleCount >= timelineData.length ? idx : idx + 1
-    );
-  };
+  const handlePrev = () => setStartIdx(idx => Math.max(0, idx - 1));
+  const handleNext = () => setStartIdx(idx => Math.min(timelineData.length - visibleCount, idx + 1));
 
   return (
     <section className="py-12">
-      <h2 className="text-3xl font-bold mb-8 text-center">Our Journey</h2>
-      <div className="w-full flex justify-center mb-4 gap-6">
+      <h2 className="text-3xl font-bold mb-10 text-center">Our Journey</h2>
+      <div className="flex items-center justify-center gap-2 mb-8">
         <button
           className="rounded-full bg-gray-200 p-2 hover:bg-gray-300 transition-colors"
           onClick={handlePrev}
@@ -51,6 +53,19 @@ const CompanyTimeline = () => {
         >
           <ArrowLeft />
         </button>
+        <div className="flex gap-6 overflow-x-auto scrollbar-thin px-6 py-2">
+          {timelineData.slice(startIdx, startIdx + visibleCount).map((event, i) => (
+            <div
+              key={event.year}
+              className="min-w-[270px] max-w-xs bg-white border shadow-lg rounded-xl flex flex-col items-center px-6 py-5 relative group transition hover:scale-105"
+            >
+              <span className="text-xl font-extrabold text-blue-700 mb-2">{event.year}</span>
+              <CalendarIcon className="h-10 w-10 text-blue-700 mb-2" />
+              <span className="font-bold mb-1 text-lg">{event.title}</span>
+              <p className="text-gray-600 text-center">{event.description}</p>
+            </div>
+          ))}
+        </div>
         <button
           className="rounded-full bg-gray-200 p-2 hover:bg-gray-300 transition-colors"
           onClick={handleNext}
@@ -59,16 +74,12 @@ const CompanyTimeline = () => {
           <ArrowRight />
         </button>
       </div>
-      <div className="flex gap-8 justify-center overflow-x-auto pb-4 scrollbar-thin" style={{ minHeight: 180 }}>
-        {timelineData.slice(startIdx, startIdx + visibleCount).map((event, i) => (
-          <div key={event.year} className="min-w-[240px] flex flex-col items-center bg-white rounded-xl shadow-md px-4 py-6 mx-2 border">
-            <div className="flex flex-col items-center mb-2">
-              <span className="text-xl font-bold text-blue-700 mb-1">{event.year}</span>
-              <CalendarIcon className="h-8 w-8 text-blue-700 mb-1" />
-              <span className="font-semibold">{event.title}</span>
-            </div>
-            <p className="text-gray-600 text-sm text-center">{event.description}</p>
-          </div>
+      <div className="flex justify-center gap-1 mt-1">
+        {timelineData.map((_, idx) => (
+          <span
+            key={idx}
+            className={`inline-block w-2 h-2 rounded-full mx-0.5 ${idx >= startIdx && idx < startIdx + visibleCount ? 'bg-blue-600' : 'bg-gray-300'}`}
+          />
         ))}
       </div>
     </section>

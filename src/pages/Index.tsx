@@ -104,6 +104,14 @@ export default function Index() {
                 </div>
               </div>
             </div>
+            {/* View All Services button */}
+            <div className="text-center mt-10">
+              <a href="/services">
+                <button className="bg-[#1a3c6b] hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded transition-colors shadow-md">
+                  View All Services
+                </button>
+              </a>
+            </div>
           </div>
         </section>
         

@@ -9,11 +9,12 @@ import ExpertiseHover from "@/components/about/ExpertiseHover";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Hero from "@/components/about/Hero";
 import Safety from "@/components/about/Safety";
+import Culture from "@/components/about/Culture";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MainNavbar showContact={false} />
+      <MainNavbar />
       <Hero />
       <main className="container max-w-5xl mx-auto px-4 py-8 animate-fade-in">
         <h1 className="text-4xl font-bold mb-2">
@@ -28,14 +29,16 @@ export default function About() {
           <CoreValues />
         </section>
 
-        {/* Leadership Team section removed. */}
         <section className="my-12">
           <AreasOfExpertise />
         </section>
 
-        {/* Added Safety section */}
         <section className="my-12">
-          <Safety />
+          <Safety showPerformance={false} />
+        </section>
+
+        <section className="my-12">
+          <Culture />
         </section>
 
         <section className="my-12">
