@@ -6,7 +6,7 @@ import CompanyOverview from '../components/about/CompanyOverview';
 import CoreValues from '../components/about/CoreValues';
 import Services from '../components/about/Services';
 import CompanyTimeline from '../components/about/CompanyTimeline';
-import LeadershipTeam from '../components/about/LeadershipTeam';
+import Safety from '../components/about/Safety';
 import CallToAction from '../components/about/CallToAction';
 import Footer from '../components/about/Footer';
 
@@ -19,7 +19,7 @@ const About = () => {
       <CoreValues />
       <Services />
       <CompanyTimeline />
-      <LeadershipTeam />
+      <Safety />
       <CallToAction />
       <Footer />
     </div>
