@@ -3,8 +3,8 @@ import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
 import AboutUs from "@/components/home/AboutUs";
-import { CounterSection } from "@/components/home/CounterSection";
-import { ProjectEnquiry } from "@/components/home/ProjectEnquiry";
+import CounterSection from "@/components/home/CounterSection";
+import ProjectEnquiry from "@/components/home/ProjectEnquiry";
 
 export default function Index() {
   return (
