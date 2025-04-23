@@ -4,16 +4,21 @@ import { Link, useLocation } from "react-router-dom";
 import { Home, Info, Briefcase, Projector, Users, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// Add showContact prop, default true!
+type MainNavbarProps = {
+  showContact?: boolean;
+};
+
 const navLinks = [
   { to: "/", label: "Home", icon: <Home size={20} /> },
   { to: "/about", label: "About", icon: <Info size={20} /> },
   { to: "/services", label: "Services", icon: <Briefcase size={20} /> },
   { to: "/projects", label: "Projects", icon: <Projector size={20} /> },
   { to: "/clients", label: "Clients", icon: <Users size={20} /> },
-  { to: "/contact", label: "Contact", icon: <Mail size={20} /> },
+  // Removed contact here; we will add it conditionally below
 ];
 
-export default function MainNavbar() {
+export default function MainNavbar({ showContact = true }: MainNavbarProps) {
   const location = useLocation();
   return (
     <nav className="bg-white shadow-sm py-4 w-full sticky top-0 z-30">
@@ -38,6 +43,20 @@ export default function MainNavbar() {
               {link.label}
             </Link>
           ))}
+          {showContact && (
+            <Link
+              to="/contact"
+              className={cn(
+                "font-medium flex items-center gap-1 transition-colors",
+                location.pathname === "/contact"
+                  ? "text-blue-800 border-b-2 border-blue-800"
+                  : "text-gray-600 hover:text-blue-800"
+              )}
+            >
+              <Mail size={20} />
+              Contact
+            </Link>
+          )}
         </div>
       </div>
     </nav>

@@ -1,4 +1,3 @@
-
 import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
@@ -9,7 +8,7 @@ import ProjectEnquiry from "@/components/home/ProjectEnquiry";
 export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MainNavbar />
+      <MainNavbar showContact={true} />
       <main>
         {/* Hero Section */}
         <section className="relative h-[600px]">

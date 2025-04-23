@@ -7,11 +7,13 @@ import CompanyTimeline from "@/components/about/CompanyTimeline";
 import Footer from "@/components/about/Footer";
 import ExpertiseHover from "@/components/about/ExpertiseHover";
 import MainNavbar from "@/components/layout/MainNavbar";
+import Hero from "@/components/about/Hero";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MainNavbar />
+      <MainNavbar showContact={false} />
+      <Hero />
       <main className="container max-w-5xl mx-auto px-4 py-8 animate-fade-in">
         <h1 className="text-4xl font-bold mb-2">
           <ExpertiseHover title="About Us" />
@@ -37,3 +39,4 @@ export default function About() {
     </div>
   );
 }
+
