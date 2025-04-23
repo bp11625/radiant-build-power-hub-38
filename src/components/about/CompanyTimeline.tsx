@@ -42,32 +42,34 @@ const CompanyTimeline = () => {
   const handlePrev = () => setStartIdx(idx => Math.max(0, idx - 1));
   const handleNext = () => setStartIdx(idx => Math.min(timelineData.length - visibleCount, idx + 1));
 
+  // Remove horizontal scroll by simply using flex without overflow-x
   return (
     <section className="py-12">
       <h2 className="text-3xl font-bold mb-10 text-center">Our Journey</h2>
       <div className="flex items-center justify-center gap-2 mb-8">
         <button
-          className="rounded-full bg-gray-200 p-2 hover:bg-gray-300 transition-colors"
+          className="rounded-full bg-blue-100 p-3 hover:bg-blue-300 transition-colors shadow"
           onClick={handlePrev}
           disabled={startIdx === 0}
         >
           <ArrowLeft />
         </button>
-        <div className="flex gap-6 overflow-x-auto scrollbar-thin px-6 py-2">
+        <div className="flex gap-6 px-6 py-2">
           {timelineData.slice(startIdx, startIdx + visibleCount).map((event, i) => (
             <div
               key={event.year}
-              className="min-w-[270px] max-w-xs bg-white border shadow-lg rounded-xl flex flex-col items-center px-6 py-5 relative group transition hover:scale-105"
+              className="min-w-[270px] max-w-xs bg-white border-2 border-blue-100 shadow-lg rounded-xl flex flex-col items-center px-6 py-5 relative group transition hover:scale-105 hover:border-blue-500"
             >
               <span className="text-xl font-extrabold text-blue-700 mb-2">{event.year}</span>
               <CalendarIcon className="h-10 w-10 text-blue-700 mb-2" />
               <span className="font-bold mb-1 text-lg">{event.title}</span>
               <p className="text-gray-600 text-center">{event.description}</p>
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 hidden group-hover:block transition"><span className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full">Learn More</span></div>
             </div>
           ))}
         </div>
         <button
-          className="rounded-full bg-gray-200 p-2 hover:bg-gray-300 transition-colors"
+          className="rounded-full bg-blue-100 p-3 hover:bg-blue-300 transition-colors shadow"
           onClick={handleNext}
           disabled={startIdx + visibleCount >= timelineData.length}
         >

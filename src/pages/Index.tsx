@@ -4,6 +4,7 @@ import Footer from "@/components/about/Footer";
 import AboutUs from "@/components/home/AboutUs";
 import CounterSection from "@/components/home/CounterSection";
 import ProjectEnquiry from "@/components/home/ProjectEnquiry";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 export default function Index() {
   return (
@@ -27,7 +28,7 @@ export default function Index() {
             <p className="text-xl md:text-2xl mb-8 max-w-2xl">
               We provide high-quality construction services for residential and commercial properties
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-6">
               <button className="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded transition-colors">
                 Our Services
               </button>
@@ -35,11 +36,38 @@ export default function Index() {
                 Contact Us
               </button>
             </div>
+            <div className="flex gap-4 mt-2">
+              {[
+                "https://www.w3schools.com/html/mov_bbb.mp4",
+                "https://www.w3schools.com/html/movie.mp4",
+                "https://www.w3schools.com/html/mov_bbb.mp4"
+              ].map((src, i) => (
+                <div key={i} className="relative group w-32 h-20 md:w-44 md:h-28 overflow-hidden rounded-lg shadow-lg border border-white/30">
+                  <video 
+                    src={src}
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500"
+                    onMouseOver={e => e.currentTarget.play()}
+                    onMouseOut={e => e.currentTarget.pause()}
+                    poster="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=40"
+                  />
+                  {!i && (
+                    <span className="absolute left-2 top-2 px-2 bg-black/70 text-white text-xs rounded">
+                      Our Projects
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         <AboutUs />
         <CounterSection />
+        <WhyChooseUs />
         
         {/* Services Section */}
         <section className="py-16 bg-gray-100">
@@ -104,7 +132,6 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            {/* View All Services button */}
             <div className="text-center mt-10">
               <a href="/services">
                 <button className="bg-[#1a3c6b] hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded transition-colors shadow-md">

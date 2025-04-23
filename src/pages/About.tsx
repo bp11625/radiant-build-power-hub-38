@@ -1,4 +1,3 @@
-
 import React from "react";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import CoreValues from "@/components/about/CoreValues";
@@ -10,6 +9,8 @@ import MainNavbar from "@/components/layout/MainNavbar";
 import Hero from "@/components/about/Hero";
 import Safety from "@/components/about/Safety";
 import Culture from "@/components/about/Culture";
+import OurTechnology from "@/components/about/OurTechnology";
+import QualityAnalysis from "@/components/about/QualityAnalysis";
 
 export default function About() {
   return (
@@ -33,11 +34,11 @@ export default function About() {
           <AreasOfExpertise />
         </section>
 
-        <section className="my-12">
-          <Safety showPerformance={false} />
-        </section>
+        <OurTechnology />
+        <QualityAnalysis />
 
         <section className="my-12">
+          <Safety showPerformance={false} />
           <Culture />
         </section>
 

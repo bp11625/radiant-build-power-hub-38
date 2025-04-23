@@ -43,6 +43,10 @@ export default function Culture() {
           </div>
         ))}
       </div>
+      {/* Creative: CTA or quote */}
+      <div className="mt-16 text-center italic text-blue-600 text-lg font-semibold">
+        “Great things in business are never done by one person; they're done by a team of people.”
+      </div>
     </section>
   );
 }

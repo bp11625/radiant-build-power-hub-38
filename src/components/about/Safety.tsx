@@ -73,24 +73,7 @@ const Safety = ({ showPerformance = true }: { showPerformance?: boolean }) => (
           </Card>
         ))}
       </div>
-      {showPerformance && (
-        <div className="mt-12 bg-blue-600 text-white p-8 rounded-xl shadow-lg">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold mb-2">Safety Performance</h3>
-              <p className="mb-3">Our dedication to safety has resulted in an industry-leading record:</p>
-              <ul className="list-disc list-inside">
-                <li>0 lost-time incidents in the past 24 months</li>
-                <li>98% safety compliance score across all projects</li>
-                <li>45,000+ hours of safety training completed annually</li>
-              </ul>
-            </div>
-            <div className="mt-6 md:mt-0">
-              <ShieldCheck className="h-24 w-24 text-white opacity-75" />
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Removed Safety Performance section as requested */}
     </div>
   </div>
 );

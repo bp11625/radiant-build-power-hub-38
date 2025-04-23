@@ -42,7 +42,7 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
               {link.label}
             </Link>
           ))}
-          {/* Always show Contact in the navbar */}
+          {/* Always show Contact in the navbar, regardless of the showContact prop */}
           <Link
             to="/contact"
             className={cn(
