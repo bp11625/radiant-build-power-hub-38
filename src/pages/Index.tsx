@@ -1,118 +1,188 @@
 
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Construction, Sun, Zap, Factory, Truck } from "lucide-react";
-import ProjectEnquiry from "../components/home/ProjectEnquiry";
-import AboutUs from "../components/home/AboutUs";
-import Footer from "../components/about/Footer";
-import CounterSection from "../components/home/CounterSection";
+import React from "react";
+import MainNavbar from "@/components/layout/MainNavbar";
+import Footer from "@/components/about/Footer";
+import AboutUs from "@/components/home/AboutUs";
+import { CounterSection } from "@/components/home/CounterSection";
+import { ProjectEnquiry } from "@/components/home/ProjectEnquiry";
 
-const Index = () => {
+export default function Index() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="text-2xl font-bold">
-            <span className="text-blue-600">Ratan</span>{" "}
-            <span className="text-orange-500">Constructions</span>
-          </div>
-          <div className="flex space-x-6">
-            <Link to="/" className="font-medium text-gray-600 hover:text-blue-800">Home</Link>
-            <Link to="/about" className="font-medium text-gray-600 hover:text-blue-800">About</Link>
-            <a href="#" className="font-medium text-gray-600 hover:text-blue-800">Services</a>
-            <a href="#" className="font-medium text-gray-600 hover:text-blue-800">Projects</a>
-            <a href="#" className="font-medium text-gray-600 hover:text-blue-800">Clientele</a>
-            <a href="#" className="font-medium text-gray-600 hover:text-blue-800">Contact</a>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Building Tomorrow's Energy Solutions</h1>
-            <p className="text-xl mb-8">Specializing in Solar Energy, Construction, Electrical Power Plants, Fabrication, and Logistics</p>
-            <div className="flex space-x-4">
-              <Link to="/about">
-                <Button className="bg-yellow-500 hover:bg-yellow-600 text-black">Learn About Us</Button>
-              </Link>
-              <Button variant="outline" className="bg-white text-blue-800 hover:bg-blue-800 hover:text-white border-white transition-colors">Our Services</Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* About Us Section */}
-      <AboutUs />
-      
-      {/* Counter Section */}
-      <CounterSection />
-
-      {/* Project Enquiry Section */}
-      <ProjectEnquiry />
-
-      {/* Core Services Section */}
-      <div className="py-16 container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-8 text-[#1a3c6b]">
-          Our Core Services
-          <div className="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
-        </h2>
-
-        <div className="text-center mb-12">
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-            From building impactful assets to empowering lives through self-reliance and sustainability, our vision is to drive progress rooted in goodness.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center p-6 group">
-            <div className="mb-6 flex justify-center">
-              <Sun className="h-16 w-16 text-yellow-500" />
-            </div>
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Energy & Utilities</h3>
-            <p className="text-gray-600">
-              Powering a sustainable future with clean energy solutions.
+    <div className="min-h-screen bg-background text-foreground">
+      <MainNavbar />
+      <main>
+        {/* Hero Section */}
+        <section className="relative h-[600px]">
+          <div className="absolute inset-0 bg-black/50 z-10"></div>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')",
+            }}
+          ></div>
+          <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-start text-white">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+              Building Excellence <br /> Since 1990
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl">
+              We provide high-quality construction services for residential and commercial properties
             </p>
-          </div>
-
-          <div className="text-center p-6 group">
-            <div className="mb-6 flex justify-center">
-              <Construction className="h-16 w-16 text-blue-600" />
+            <div className="flex flex-wrap gap-4">
+              <button className="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded transition-colors">
+                Our Services
+              </button>
+              <button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium py-3 px-6 rounded transition-colors">
+                Contact Us
+              </button>
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Construction</h3>
-            <p className="text-gray-600">
-              Building world-class infrastructures and enduring legacies.
-            </p>
           </div>
+        </section>
 
-          <div className="text-center p-6 group">
-            <div className="mb-6 flex justify-center">
-              <Zap className="h-16 w-16 text-red-500" />
+        <AboutUs />
+        <CounterSection />
+        
+        {/* Services Section */}
+        <section className="py-16 bg-gray-100">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-8 text-[#1a3c6b]">
+              Our Services
+              <div className="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {/* Service 1 */}
+              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="h-48 bg-blue-100 flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1613977257365-aaae5a9817ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                    alt="Residential Construction" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">Residential Construction</h3>
+                  <p className="text-gray-600 mb-4">
+                    Custom homes, renovations, and additions tailored to your lifestyle and needs.
+                  </p>
+                  <a href="#" className="text-red-500 hover:text-red-600 font-medium">Learn More →</a>
+                </div>
+              </div>
+              
+              {/* Service 2 */}
+              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="h-48 bg-blue-100 flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                    alt="Commercial Construction" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">Commercial Construction</h3>
+                  <p className="text-gray-600 mb-4">
+                    Office buildings, retail spaces, and industrial facilities designed for efficiency.
+                  </p>
+                  <a href="#" className="text-red-500 hover:text-red-600 font-medium">Learn More →</a>
+                </div>
+              </div>
+              
+              {/* Service 3 */}
+              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="h-48 bg-blue-100 flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1665513366480-5e5881cdac6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1222&q=80" 
+                    alt="Renovation & Remodeling" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">Renovation & Remodeling</h3>
+                  <p className="text-gray-600 mb-4">
+                    Transform your existing space with modern designs and quality craftsmanship.
+                  </p>
+                  <a href="#" className="text-red-500 hover:text-red-600 font-medium">Learn More →</a>
+                </div>
+              </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Power Plant</h3>
-            <p className="text-gray-600">
-              Delivering reliable and efficient energy to keep the world running.
-            </p>
           </div>
-
-          <div className="text-center p-6 group">
-            <div className="mb-6 flex justify-center">
-              <Truck className="h-16 w-16 text-green-600" />
+        </section>
+        
+        {/* Projects Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-8 text-[#1a3c6b]">
+              Recent Projects
+              <div className="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {/* Project 1 */}
+              <div className="group rounded-lg overflow-hidden shadow-md">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1621335223658-0ebd89004d51?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                    alt="Luxury Villa" 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Project</button>
+                  </div>
+                </div>
+                <div className="p-6 bg-white">
+                  <h3 className="text-xl font-bold mb-2 text-gray-800">Luxury Villa</h3>
+                  <p className="text-gray-600">Residential Project</p>
+                </div>
+              </div>
+              
+              {/* Project 2 */}
+              <div className="group rounded-lg overflow-hidden shadow-md">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                    alt="Office Tower" 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Project</button>
+                  </div>
+                </div>
+                <div className="p-6 bg-white">
+                  <h3 className="text-xl font-bold mb-2 text-gray-800">Office Tower</h3>
+                  <p className="text-gray-600">Commercial Project</p>
+                </div>
+              </div>
+              
+              {/* Project 3 */}
+              <div className="group rounded-lg overflow-hidden shadow-md">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                    alt="Modern Apartment" 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Project</button>
+                  </div>
+                </div>
+                <div className="p-6 bg-white">
+                  <h3 className="text-xl font-bold mb-2 text-gray-800">Modern Apartment</h3>
+                  <p className="text-gray-600">Residential Project</p>
+                </div>
+              </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800">Logistics</h3>
-            <p className="text-gray-600">
-              Driving global connectivity with smart, efficient, and reliable solutions.
-            </p>
+            
+            <div className="text-center mt-12">
+              <button className="bg-[#1a3c6b] hover:bg-blue-800 text-white font-medium py-3 px-8 rounded transition-colors">
+                View All Projects
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* Footer */}
+        </section>
+        
+        <ProjectEnquiry />
+      </main>
       <Footer />
     </div>
   );
-};
-
-export default Index;
+}

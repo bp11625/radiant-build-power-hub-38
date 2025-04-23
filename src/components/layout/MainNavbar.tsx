@@ -16,28 +16,30 @@ const navLinks = [
 export default function MainNavbar() {
   const location = useLocation();
   return (
-    <nav className="w-full glass-morphism px-6 py-3 flex justify-between items-center rounded-xl mb-10 shadow-lg sticky top-0 z-30">
-      <div className="flex items-center gap-3 font-extrabold text-xl text-primary">
-        <img src="/favicon.ico" alt="Logo" className="w-7 h-7 mr-2" />
-        Radiant Power Hub
-      </div>
-      <ul className="flex gap-6">
-        {navLinks.map((link) => (
-          <li key={link.to}>
+    <nav className="bg-white shadow-sm py-4 w-full sticky top-0 z-30">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="text-2xl font-bold">
+          <span className="text-blue-600">Ratan</span>{" "}
+          <span className="text-orange-500">Constructions</span>
+        </div>
+        <div className="flex space-x-6">
+          {navLinks.map((link) => (
             <Link
+              key={link.to}
               to={link.to}
               className={cn(
-                "story-link px-2 py-1 rounded-lg flex items-center gap-1 font-medium transition",
+                "font-medium flex items-center gap-1 transition-colors",
                 location.pathname === link.to
-                  ? "text-primary bg-primary/10"
-                  : "text-foreground hover:bg-primary/10"
+                  ? "text-blue-800 border-b-2 border-blue-800"
+                  : "text-gray-600 hover:text-blue-800"
               )}
             >
-              {link.icon} {link.label}
+              {link.icon}
+              {link.label}
             </Link>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 }

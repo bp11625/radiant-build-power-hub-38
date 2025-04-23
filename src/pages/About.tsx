@@ -32,8 +32,6 @@ export default function About() {
         <section className="my-12">
           <CompanyTimeline />
         </section>
-
-        {/* Safety Performance and Contact Us removed as requested */}
       </main>
       <Footer />
     </div>
