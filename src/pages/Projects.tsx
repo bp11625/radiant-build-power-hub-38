@@ -1,8 +1,8 @@
-
 import React, { useState } from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
 import { Filter, Sun, Building2 } from "lucide-react";
+import Heading from "@/components/ui/Heading";
 
 const projectData = [
   {
@@ -60,8 +60,7 @@ export default function Projects() {
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar showContact={false} />
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-2 text-[#1a3c6b]">Our Projects</h1>
-        <div className="w-24 h-1 bg-red-500 mb-8"></div>
+        <Heading>Our Projects</Heading>
 
         {/* Filter buttons */}
         <div className="flex gap-4 mb-10">
@@ -85,9 +84,9 @@ export default function Projects() {
           {filteredProjects.map((proj, idx) => (
             <div key={idx} className="group rounded-lg overflow-hidden shadow-md">
               <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={proj.image} 
-                  alt={proj.title} 
+                <img
+                  src={proj.image}
+                  alt={proj.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

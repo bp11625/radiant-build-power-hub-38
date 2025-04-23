@@ -2,12 +2,14 @@ import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
 import { Check } from "lucide-react";
+import Heading from "@/components/ui/Heading";
 
 export default function Clients() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar />
       <main className="container mx-auto px-4 py-8">
+        <Heading>Our Clients</Heading>
         {/* Who we serve + Our Clients */}
         <section className="mb-12">
           <h2 className="text-orange-600 uppercase font-bold text-xl mb-2">Who We Serve</h2>
@@ -46,7 +48,6 @@ export default function Clients() {
             </div>
           </div>
         </section>
-        
         <div className="w-24 h-1 bg-red-500 mb-8"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 py-12">
           {/* Client logos */}
