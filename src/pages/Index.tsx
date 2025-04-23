@@ -1,3 +1,4 @@
+
 import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
@@ -7,20 +8,46 @@ import ProjectEnquiry from "@/components/home/ProjectEnquiry";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 export default function Index() {
+  // Video sources for hero background
+  const HERO_VIDEOS = [
+    "https://www.w3schools.com/html/mov_bbb.mp4",
+    "https://www.w3schools.com/html/movie.mp4",
+    "https://www.w3schools.com/html/mov_bbb.mp4"
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar showContact={true} />
       <main>
         {/* Hero Section */}
-        <section className="relative h-[600px]">
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')",
-            }}
-          ></div>
+        <section className="relative h-[600px] overflow-hidden">
+          {/* The grid of hovering videos as background */}
+          <div className="absolute inset-0 w-full h-full flex z-0">
+            {HERO_VIDEOS.map((src, i) => (
+              <div
+                key={i}
+                className="flex-1 h-full group relative overflow-hidden"
+                style={{ minWidth: 0 }}
+              >
+                <video
+                  src={src}
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500"
+                  onMouseOver={e => e.currentTarget.play()}
+                  onMouseOut={e => e.currentTarget.pause()}
+                  poster="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=40"
+                />
+                {/* Optional: subtle dark overlay on each video for text readability */}
+                <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+              </div>
+            ))}
+          </div>
+          {/* Overall overlay for whole hero area */}
+          <div className="absolute inset-0 bg-black/40 z-10"></div>
+          {/* Hero Content */}
           <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-start text-white">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
               Building Excellence <br /> Since 1990
@@ -35,32 +62,6 @@ export default function Index() {
               <button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium py-3 px-6 rounded transition-colors">
                 Contact Us
               </button>
-            </div>
-            <div className="flex gap-4 mt-2">
-              {[
-                "https://www.w3schools.com/html/mov_bbb.mp4",
-                "https://www.w3schools.com/html/movie.mp4",
-                "https://www.w3schools.com/html/mov_bbb.mp4"
-              ].map((src, i) => (
-                <div key={i} className="relative group w-32 h-20 md:w-44 md:h-28 overflow-hidden rounded-lg shadow-lg border border-white/30">
-                  <video 
-                    src={src}
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500"
-                    onMouseOver={e => e.currentTarget.play()}
-                    onMouseOut={e => e.currentTarget.pause()}
-                    poster="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=40"
-                  />
-                  {!i && (
-                    <span className="absolute left-2 top-2 px-2 bg-black/70 text-white text-xs rounded">
-                      Our Projects
-                    </span>
-                  )}
-                </div>
-              ))}
             </div>
           </div>
         </section>
