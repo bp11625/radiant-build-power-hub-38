@@ -8,6 +8,7 @@ import Footer from "@/components/about/Footer";
 import ExpertiseHover from "@/components/about/ExpertiseHover";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Hero from "@/components/about/Hero";
+import Safety from "@/components/about/Safety";
 
 export default function About() {
   return (
@@ -27,8 +28,14 @@ export default function About() {
           <CoreValues />
         </section>
 
+        {/* Leadership Team section removed. */}
         <section className="my-12">
           <AreasOfExpertise />
+        </section>
+
+        {/* Added Safety section */}
+        <section className="my-12">
+          <Safety />
         </section>
 
         <section className="my-12">

@@ -1,15 +1,69 @@
 import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
+import { Truck } from "lucide-react";
+
+const earthworkServices = [
+  "Mass Earthwork",
+  "Rock Excavation",
+  "Site Clearing & Grading",
+  "Subgrade Stabilization",
+  "Crushed Aggregates",
+  "Sheet Piling And Shoring",
+  "Heavy Highway / Urban Expressways / City Streets",
+  "Levee Construction & Rehabilitation",
+  "Railroad Construction",
+  "Airport Construction",
+  "Site Development (Commercial, Industrial, Residential)",
+  "Water & Wastewater Treatment Plants",
+  "Golf Course Construction & Renovation",
+  "Environmental / Wetland Remediation"
+];
 
 export default function Services() {
+  // Split service points into 2 columns
+  const half = Math.ceil(earthworkServices.length / 2);
+  const left = earthworkServices.slice(0, half);
+  const right = earthworkServices.slice(half);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MainNavbar />
+      <MainNavbar showContact={false} />
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-2 text-[#1a3c6b]">Our Services</h1>
         <div className="w-24 h-1 bg-red-500 mb-8"></div>
-        
+
+        {/* WE DO IT ALL block as in the image */}
+        <section className="py-10 rounded-xl bg-gray-50 mb-12">
+          <div className="flex flex-col md:flex-row items-center gap-8 justify-center">
+            <div className="flex flex-col items-center md:items-start w-full md:w-1/4 text-center md:text-left">
+              <Truck size={56} className="text-orange-500 mb-2" />
+              <span className="uppercase font-bold text-orange-500 tracking-wide mb-2">Our Services</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">WE DO IT ALL</h2>
+              <span className="font-semibold text-2xl mt-4 text-gray-700">EARTHWORK</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:w-3/4">
+              <ul className="space-y-3 text-base text-gray-700">
+                {left.map((item, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="text-orange-500 font-bold">✔</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-3 text-base text-gray-700">
+                {right.map((item, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="text-orange-500 font-bold">✔</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Existing cards (optional, can keep or remove) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-12">
           {/* Service cards */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
