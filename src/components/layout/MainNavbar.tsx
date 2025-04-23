@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Home, Info, Briefcase, Projector, Users, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Add showContact prop, default true!
 type MainNavbarProps = {
   showContact?: boolean;
 };
@@ -15,11 +14,16 @@ const navLinks = [
   { to: "/services", label: "Services", icon: <Briefcase size={20} /> },
   { to: "/projects", label: "Projects", icon: <Projector size={20} /> },
   { to: "/clients", label: "Clients", icon: <Users size={20} /> },
-  // Removed contact here; we will add it conditionally below
 ];
 
-export default function MainNavbar({ showContact = true }: MainNavbarProps) {
+export default function MainNavbar({ showContact = false }: MainNavbarProps) {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const isContactPage = location.pathname === "/contact";
+  
+  // Only show Contact in navbar on home or contact page
+  const shouldShowContact = isHomePage || isContactPage || showContact;
+  
   return (
     <nav className="bg-white shadow-sm py-4 w-full sticky top-0 z-30">
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -43,7 +47,7 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
               {link.label}
             </Link>
           ))}
-          {showContact && (
+          {shouldShowContact && (
             <Link
               to="/contact"
               className={cn(

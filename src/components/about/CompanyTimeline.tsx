@@ -1,4 +1,15 @@
 
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
+
 const CompanyTimeline = () => {
   const timelineEvents = [
     {
@@ -25,6 +36,16 @@ const CompanyTimeline = () => {
       year: "2020",
       title: "Integrated Logistics",
       description: "Added comprehensive logistics capabilities to our service offering"
+    },
+    {
+      year: "2022",
+      title: "International Expansion",
+      description: "Opened offices in Europe and Asia to serve global clients"
+    },
+    {
+      year: "2024",
+      title: "Renewable Focus",
+      description: "Committed to 100% renewable energy projects by 2030"
     }
   ];
 
@@ -32,35 +53,34 @@ const CompanyTimeline = () => {
     <div className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Our Journey</h2>
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-300"></div>
-          <div className="relative z-10">
-            {timelineEvents.map((event, index) => (
-              <div key={index} className="flex flex-col md:flex-row items-center mb-12 last:mb-0">
-                {index % 2 === 0 ? (
-                  <>
-                    <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
-                      <h3 className="text-xl font-bold text-blue-800">{event.year}</h3>
-                      <p className="text-lg font-medium">{event.title}</p>
-                      <p className="text-gray-600">{event.description}</p>
+        
+        <div className="relative max-w-5xl mx-auto px-10">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {timelineEvents.map((event, index) => (
+                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+                  <div className="h-64 p-4">
+                    <div className="bg-white rounded-lg shadow-md h-full flex flex-col items-center p-6 hover:shadow-lg transition-shadow">
+                      <div className="text-2xl font-bold text-blue-800">{event.year}</div>
+                      <div className="my-4 bg-blue-100 rounded-full p-3">
+                        <Calendar className="text-blue-800 h-7 w-7" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-center mb-2">{event.title}</h3>
+                      <p className="text-gray-600 text-center text-sm">{event.description}</p>
                     </div>
-                    <div className="bg-blue-500 rounded-full h-8 w-8 border-4 border-white shadow-lg"></div>
-                    <div className="md:w-1/2 md:pl-12 opacity-0 md:opacity-100"></div>
-                  </>
-                ) : (
-                  <>
-                    <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right opacity-0 md:opacity-100"></div>
-                    <div className="bg-blue-500 rounded-full h-8 w-8 border-4 border-white shadow-lg"></div>
-                    <div className="md:w-1/2 md:pl-12">
-                      <h3 className="text-xl font-bold text-blue-800">{event.year}</h3>
-                      <p className="text-lg font-medium">{event.title}</p>
-                      <p className="text-gray-600">{event.description}</p>
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
         </div>
       </div>
     </div>

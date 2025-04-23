@@ -2,7 +2,7 @@
 import React from "react";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import CoreValues from "@/components/about/CoreValues";
-import LeadershipTeam from "@/components/about/LeadershipTeam";
+import AreasOfExpertise from "@/components/about/AreasOfExpertise";
 import CompanyTimeline from "@/components/about/CompanyTimeline";
 import Footer from "@/components/about/Footer";
 import ExpertiseHover from "@/components/about/ExpertiseHover";
@@ -28,7 +28,7 @@ export default function About() {
         </section>
 
         <section className="my-12">
-          <LeadershipTeam />
+          <AreasOfExpertise />
         </section>
 
         <section className="my-12">
@@ -39,4 +39,3 @@ export default function About() {
     </div>
   );
 }
-
