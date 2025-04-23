@@ -1,3 +1,4 @@
+
 import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
@@ -20,7 +21,7 @@ export default function Index() {
       <main>
         {/* Hero Section */}
         <section className="relative h-[600px] overflow-hidden">
-          {/* Full-width video grid */}
+          {/* Animated video grid as background - NO IMAGE */}
           <div className="absolute inset-0 w-full h-full flex z-0">
             {HERO_VIDEOS.map((src, i) => (
               <div
@@ -34,8 +35,7 @@ export default function Index() {
                   muted
                   playsInline
                   autoPlay
-                  className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500"
-                  poster="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=40"
+                  className={`w-full h-full object-cover transition-transform duration-500 video-float-${i % 3} group-hover:scale-110`}
                 />
                 {/* Dark overlay for text readability */}
                 <div className="absolute inset-0 bg-black/40 pointer-events-none" />
