@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
-import { Filter, Solar, Infrastructure } from "lucide-react";
+import { Filter, Sun, Building2 } from "lucide-react";
 
 const projectData = [
   {
@@ -44,8 +44,8 @@ const projectData = [
 
 const filters = [
   { key: "all", label: "All", icon: Filter },
-  { key: "solar", label: "Solar", icon: Solar },
-  { key: "infrastructure", label: "Infrastructure", icon: Infrastructure }
+  { key: "solar", label: "Solar", icon: Sun },
+  { key: "infrastructure", label: "Infrastructure", icon: Building2 }
 ];
 
 export default function Projects() {
