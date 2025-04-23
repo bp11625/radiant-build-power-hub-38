@@ -67,9 +67,9 @@ export default function Index() {
 
         <AboutUs />
         <CounterSection />
-        <WhyChooseUs />
-        
-        {/* Services Section */}
+
+        {/* Place WhyChooseUs just above the footer */}
+        {/* Remove old placement; reduce py to 8 in WhyChooseUs for smaller height */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold text-center mb-8 text-[#1a3c6b]">
@@ -141,8 +141,6 @@ export default function Index() {
             </div>
           </div>
         </section>
-        
-        {/* Projects Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold text-center mb-8 text-[#1a3c6b]">
@@ -213,8 +211,10 @@ export default function Index() {
             </div>
           </div>
         </section>
-        
         <ProjectEnquiry />
+
+        {/* WhyChooseUs closer to the footer */}
+        <WhyChooseUs />
       </main>
       <Footer />
     </div>

@@ -47,7 +47,7 @@ const ICONS_MAP = {
 export default function WhyChooseUs() {
   return (
     <section
-      className="relative py-20 bg-[#171f2c]"
+      className="relative py-8 bg-[#171f2c]"
       style={{
         backgroundImage:
           "url('/public/lovable-uploads/5b6133ec-5c88-45b6-83bc-0e6cb57bf052.png'), linear-gradient(to right,#171f2c,#222940 80%)",
@@ -58,7 +58,7 @@ export default function WhyChooseUs() {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-white mb-2">Why <span className="text-blue-300">Choose Us?</span></h2>
-        <p className="text-gray-300 mb-12 text-lg max-w-2xl leading-relaxed">
+        <p className="text-gray-300 mb-8 text-lg max-w-2xl leading-relaxed">
           Total Solution of Printed Circuit Boards with Consistent Quality, Appropriate Delivery &amp; Competitive cost
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 border-t border-gray-600 divide-y md:divide-y-0 md:divide-x divide-gray-600">
@@ -67,10 +67,10 @@ export default function WhyChooseUs() {
             return (
               <div key={i}
                 className={`flex flex-col items-start gap-5 px-8 py-8 bg-black/10 transition hover:bg-black/20 max-md:border-b md:border-r border-gray-700`}
-                style={{ minHeight: 230 }}
+                style={{ minHeight: 180 }}
               >
                 <div className="rounded-full bg-blue-900/40 p-3 mb-2">
-                  <IconComponent size={38} className="text-blue-200" strokeWidth={2.5}/>
+                  <IconComponent size={32} className="text-blue-200" strokeWidth={2.2}/>
                 </div>
                 <h4 className="text-xl font-semibold text-white">{f.title}</h4>
                 <p className="text-gray-400">{f.desc}</p>

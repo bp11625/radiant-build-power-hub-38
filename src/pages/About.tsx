@@ -1,3 +1,4 @@
+
 import React from "react";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import CoreValues from "@/components/about/CoreValues";
@@ -18,12 +19,14 @@ export default function About() {
       <MainNavbar />
       <Hero />
       <main className="container max-w-5xl mx-auto px-4 py-8 animate-fade-in">
-        <h1 className="text-4xl font-bold mb-2">
-          <ExpertiseHover title="About Us" />
-        </h1>
-        <p className="mb-8 text-xl text-muted-foreground max-w-2xl">
-          We are industry leaders in high-quality engineering fabrication, offering robust solutions in transmission, substation, solar, telecom, and infrastructure sectors.
-        </p>
+        <div className="mb-6">
+          <h1 className="text-4xl font-bold mb-2 flex items-center gap-2">
+            <ExpertiseHover title="About Us" />
+          </h1>
+          <p className="mb-8 text-xl text-muted-foreground max-w-4xl leading-[1.7]">
+            We are industry leaders in high-quality engineering fabrication, offering robust solutions in transmission, substation, solar, telecom, and infrastructure sectors.
+          </p>
+        </div>
         <CompanyOverview />
 
         <section className="my-12">
@@ -33,7 +36,6 @@ export default function About() {
         <section className="my-12">
           <AreasOfExpertise />
         </section>
-
         <OurTechnology />
         <QualityAnalysis />
 
