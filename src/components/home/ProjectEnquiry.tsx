@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -25,12 +24,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
 
-// Define validation schemas for each form type
 const fabricationSchema = z.object({
   structure: z.string().min(1, "Structure type is required"),
   material: z.string().min(1, "Material grade is required"),
   dimensions: z.string().min(1, "Dimensions are required"),
   quantity: z.string().min(1, "Quantity is required"),
+  finish: z.string().min(1, "Surface finish is required"),
+  delivery_timeline: z.string().min(1, "Delivery timeline is required"),
   notes: z.string().optional(),
 });
 
@@ -38,6 +38,9 @@ const civilSchema = z.object({
   foundation: z.string().min(1, "Foundation type is required"),
   area: z.string().min(1, "Site area is required"),
   soil: z.string().min(1, "Soil type is required"),
+  construction_type: z.string().min(1, "Construction type is required"),
+  timeline: z.string().min(1, "Timeline is required"),
+  budget_range: z.string().min(1, "Budget range is required"),
   notes: z.string().optional(),
 });
 
@@ -45,6 +48,9 @@ const solarSchema = z.object({
   capacity: z.string().min(1, "System capacity is required"),
   mounting: z.string().min(1, "Mounting type is required"),
   modules: z.string().min(1, "Number of modules is required"),
+  inverter_type: z.string().min(1, "Inverter type is required"),
+  battery_storage: z.string().min(1, "Battery storage required?"),
+  site_location: z.string().min(1, "Site location is required"),
   notes: z.string().optional(),
 });
 
@@ -73,7 +79,6 @@ const ProjectEnquiry = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("fabrication");
   
-  // Get the appropriate schema based on active tab
   const getFormSchema = () => {
     switch (activeTab) {
       case "fabrication": return fabricationSchema;
@@ -89,7 +94,6 @@ const ProjectEnquiry = () => {
   const form = useForm({
     resolver: zodResolver(getFormSchema()),
     defaultValues: {
-      // Default values for all fields
       structure: "",
       material: "",
       dimensions: "",
@@ -245,6 +249,54 @@ const ProjectEnquiry = () => {
                     </FormItem>
                   )}
                 />
+
+                <FormField
+                  control={form.control}
+                  name="finish"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Surface Finish</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select finish type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="galvanized">Hot-dip Galvanized</SelectItem>
+                          <SelectItem value="painted">Painted</SelectItem>
+                          <SelectItem value="powder-coated">Powder Coated</SelectItem>
+                          <SelectItem value="raw">Raw Steel</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="delivery_timeline"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Delivery Timeline</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select timeline" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="urgent">Urgent (1-2 weeks)</SelectItem>
+                          <SelectItem value="normal">Normal (3-4 weeks)</SelectItem>
+                          <SelectItem value="relaxed">Relaxed (5-6 weeks)</SelectItem>
+                          <SelectItem value="flexible">Flexible</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
 
               <FormField
@@ -323,6 +375,78 @@ const ProjectEnquiry = () => {
                     </FormItem>
                   )}
                 />
+
+                <FormField
+                  control={form.control}
+                  name="construction_type"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Construction Type</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="residential">Residential</SelectItem>
+                          <SelectItem value="commercial">Commercial</SelectItem>
+                          <SelectItem value="industrial">Industrial</SelectItem>
+                          <SelectItem value="infrastructure">Infrastructure</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="timeline"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Timeline</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select timeline" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="urgent">Urgent (1-2 weeks)</SelectItem>
+                          <SelectItem value="normal">Normal (3-4 weeks)</SelectItem>
+                          <SelectItem value="relaxed">Relaxed (5-6 weeks)</SelectItem>
+                          <SelectItem value="flexible">Flexible</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="budget_range"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Budget Range</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select range" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="range1">Under ₹50 Lakhs</SelectItem>
+                          <SelectItem value="range2">₹50 Lakhs - 1 Crore</SelectItem>
+                          <SelectItem value="range3">₹1 Crore - 5 Crore</SelectItem>
+                          <SelectItem value="range4">Above ₹5 Crore</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
 
               <FormField
@@ -387,6 +511,67 @@ const ProjectEnquiry = () => {
                       <FormLabel># of Modules</FormLabel>
                       <FormControl>
                         <Input placeholder="e.g. 200" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="inverter_type"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Inverter Type</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="string">String Inverter</SelectItem>
+                          <SelectItem value="central">Central Inverter</SelectItem>
+                          <SelectItem value="micro">Microinverter</SelectItem>
+                          <SelectItem value="hybrid">Hybrid Inverter</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="battery_storage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Battery Storage</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select option" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="yes">Yes, Required</SelectItem>
+                          <SelectItem value="no">No, Grid-tied Only</SelectItem>
+                          <SelectItem value="future">Plan for Future</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="site_location"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Site Location</FormLabel>
+                      <FormControl>
+                        <Input placeholder="City, State" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

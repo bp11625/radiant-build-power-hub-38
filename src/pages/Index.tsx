@@ -5,8 +5,8 @@ import AboutUs from "@/components/home/AboutUs";
 import CounterSection from "@/components/home/CounterSection";
 import ProjectEnquiry from "@/components/home/ProjectEnquiry";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
-import Heading from "@/components/ui/Heading";
 import { useState, useEffect } from "react";
+import Heading from "@/components/ui/Heading";
 
 export default function Index() {
   // Video sources for hero background
@@ -71,7 +71,10 @@ export default function Index() {
         <AboutUs />
         <CounterSection />
 
-        {/* Services Section with Heading */}
+        {/* Project Enquiry Section */}
+        <ProjectEnquiry />
+
+        {/* Services Section */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
             <Heading>Our Services</Heading>
@@ -137,6 +140,8 @@ export default function Index() {
             </div>
           </div>
         </section>
+
+        {/* Recent Projects Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <Heading>Recent Projects</Heading>
@@ -202,7 +207,10 @@ export default function Index() {
             </div>
           </div>
         </section>
+
+        {/* Second Project Enquiry Section */}
         <ProjectEnquiry />
+
         <WhyChooseUs />
       </main>
       <Footer />
