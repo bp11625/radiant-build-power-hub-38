@@ -1,4 +1,3 @@
-
 import React from "react";
 import Footer from "@/components/about/Footer";
 import MainNavbar from "@/components/layout/MainNavbar";
@@ -7,7 +6,6 @@ import CompanyOverview from "@/components/about/CompanyOverview";
 import CoreValues from "@/components/about/CoreValues";
 import AreasOfExpertise from "@/components/about/AreasOfExpertise";
 import CompanyTimeline from "@/components/about/CompanyTimeline";
-import ExpertiseHover from "@/components/about/ExpertiseHover";
 import Safety from "@/components/about/Safety";
 import Culture from "@/components/about/Culture";
 import OurTechnology from "@/components/about/OurTechnology";

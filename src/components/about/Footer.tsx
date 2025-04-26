@@ -1,13 +1,14 @@
+
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import GetInTouch from './GetInTouch';
+// Removed GetInTouch import
 
 const Footer = () => {
   return (
     <>
-      <GetInTouch />
+      {/* Removed GetInTouch component */}
       <footer className="bg-[#1a3c6b] text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">

@@ -22,7 +22,6 @@ const earthworkServices = [
 ];
 
 export default function Services() {
-  // Split service points into 2 columns
   const half = Math.ceil(earthworkServices.length / 2);
   const left = earthworkServices.slice(0, half);
   const right = earthworkServices.slice(half);
@@ -32,7 +31,6 @@ export default function Services() {
       <MainNavbar showContact={false} />
       <main className="container mx-auto px-4 py-8">
         <Heading>Our Services</Heading>
-        {/* WE DO IT ALL block as in the image */}
         <section className="py-10 rounded-xl bg-gray-50 mb-12">
           <div className="flex flex-col md:flex-row items-center gap-8 justify-center">
             <div className="flex flex-col items-center md:items-start w-full md:w-1/4 text-center md:text-left">
@@ -61,9 +59,7 @@ export default function Services() {
             </div>
           </div>
         </section>
-        {/* Existing cards (optional, can keep or remove) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-12">
-          {/* Service cards */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 bg-blue-100 flex items-center justify-center">
               <img
@@ -80,7 +76,6 @@ export default function Services() {
               <a href="#" className="text-red-500 hover:text-red-600 font-medium">Learn More →</a>
             </div>
           </div>
-          {/* Service 2 */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 bg-blue-100 flex items-center justify-center">
               <img
@@ -97,7 +92,6 @@ export default function Services() {
               <a href="#" className="text-red-500 hover:text-red-600 font-medium">Learn More →</a>
             </div>
           </div>
-          {/* Service 3 */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 bg-blue-100 flex items-center justify-center">
               <img
