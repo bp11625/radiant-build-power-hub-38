@@ -4,9 +4,48 @@ import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import Heading from "@/components/ui/Heading";
 
 export default function Contact() {
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [webhookUrl, setWebhookUrl] = React.useState("YOUR_ZAPIER_WEBHOOK_URL"); // Replace with your Zapier webhook URL
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify(data),
+      });
+
+      toast({
+        title: "Success!",
+        description: "Your message has been sent successfully.",
+      });
+      
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar />
@@ -18,20 +57,26 @@ export default function Contact() {
             <p className="text-gray-600">
               Fill out the form and our team will get back to you within 24 hours.
             </p>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input placeholder="First Name" className="w-full" />
-                <Input placeholder="Last Name" className="w-full" />
+                <Input name="firstName" placeholder="First Name" className="w-full" required />
+                <Input name="lastName" placeholder="Last Name" className="w-full" required />
               </div>
-              <Input placeholder="Email" type="email" className="w-full" />
-              <Input placeholder="Phone" type="tel" className="w-full" />
+              <Input name="email" placeholder="Email" type="email" className="w-full" required />
+              <Input name="phone" placeholder="Phone" type="tel" className="w-full" required />
               <textarea
+                name="message"
                 placeholder="Your Message"
                 rows={5}
                 className="w-full p-3 border border-gray-300 rounded-md text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
               ></textarea>
-              <Button className="bg-red-500 hover:bg-red-600 text-white w-full md:w-auto px-8">
-                Send Message
+              <Button 
+                type="submit" 
+                className="bg-red-500 hover:bg-red-600 text-white w-full md:w-auto px-8"
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
@@ -69,4 +114,4 @@ export default function Contact() {
       <Footer />
     </div>
   );
-}
+};

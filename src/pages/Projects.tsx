@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { Button } from "../components/ui/button";
+import MainNavbar from "@/components/layout/MainNavbar";
 
 // Generate 50 projects with different tags
 const generateProjects = () => {
@@ -70,6 +70,7 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <MainNavbar />
       <div className="bg-blue-900 text-white py-20">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Projects</h1>
