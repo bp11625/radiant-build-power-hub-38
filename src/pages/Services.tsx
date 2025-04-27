@@ -28,7 +28,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <MainNavbar showContact={false} />
+      <MainNavbar />
       <main className="container mx-auto px-4 py-8">
         <Heading title="Our Services" />
         <section className="py-10 rounded-xl bg-gray-50 mb-12">

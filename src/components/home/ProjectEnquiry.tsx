@@ -183,40 +183,32 @@ const ProjectEnquiry = () => {
       </h2>
 
       <Tabs defaultValue="fabrication" className="w-full max-w-5xl mx-auto" onValueChange={handleTabChange}>
-        <div className="overflow-x-auto pb-4">
-          <TabsList className="inline-flex min-w-full md:grid md:grid-cols-6 gap-2">
-            <TabsTrigger value="fabrication" className="flex gap-2 items-center whitespace-nowrap">
-              <Construction className="w-4 h-4" />
-              <span className="hidden sm:inline">Steel Fabrication</span>
-              <span className="sm:hidden">Fabric.</span>
-            </TabsTrigger>
-            <TabsTrigger value="civil" className="flex gap-2 items-center whitespace-nowrap">
-              <Building className="w-4 h-4" />
-              <span className="hidden sm:inline">Civil Foundations</span>
-              <span className="sm:hidden">Civil</span>
-            </TabsTrigger>
-            <TabsTrigger value="solar" className="flex gap-2 items-center whitespace-nowrap">
-              <Sun className="w-4 h-4" />
-              <span className="hidden sm:inline">Solar Erection</span>
-              <span className="sm:hidden">Solar</span>
-            </TabsTrigger>
-            <TabsTrigger value="infrastructure" className="flex gap-2 items-center whitespace-nowrap">
-              <Building className="w-4 h-4" />
-              <span className="hidden sm:inline">Infrastructure</span>
-              <span className="sm:hidden">Infra</span>
-            </TabsTrigger>
-            <TabsTrigger value="transmission" className="flex gap-2 items-center whitespace-nowrap">
-              <Power className="w-4 h-4" />
-              <span className="hidden sm:inline">Transmission</span>
-              <span className="sm:hidden">Trans</span>
-            </TabsTrigger>
-            <TabsTrigger value="turnkey" className="flex gap-2 items-center whitespace-nowrap">
-              <Building className="w-4 h-4" />
-              <span className="hidden sm:inline">Turnkey Projects</span>
-              <span className="sm:hidden">Turnkey</span>
-            </TabsTrigger>
-          </TabsList>
-        </div>
+        <TabsList className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-2 w-full">
+          <TabsTrigger value="fabrication" className="flex gap-1 items-center">
+            <Construction className="w-4 h-4" />
+            <span className="hidden sm:inline">Steel</span>
+          </TabsTrigger>
+          <TabsTrigger value="civil" className="flex gap-1 items-center">
+            <Building className="w-4 h-4" />
+            <span className="hidden sm:inline">Civil</span>
+          </TabsTrigger>
+          <TabsTrigger value="solar" className="flex gap-1 items-center">
+            <Sun className="w-4 h-4" />
+            <span className="hidden sm:inline">Solar</span>
+          </TabsTrigger>
+          <TabsTrigger value="infrastructure" className="flex gap-1 items-center">
+            <Building className="w-4 h-4" />
+            <span className="hidden sm:inline">Infra</span>
+          </TabsTrigger>
+          <TabsTrigger value="transmission" className="flex gap-1 items-center">
+            <Power className="w-4 h-4" />
+            <span className="hidden sm:inline">Trans</span>
+          </TabsTrigger>
+          <TabsTrigger value="turnkey" className="flex gap-1 items-center">
+            <Building className="w-4 h-4" />
+            <span className="hidden sm:inline">Turn</span>
+          </TabsTrigger>
+        </TabsList>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
