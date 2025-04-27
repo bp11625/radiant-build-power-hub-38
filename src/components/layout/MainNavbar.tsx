@@ -22,10 +22,11 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-white shadow-sm py-4 w-full sticky top-0 z-30">
+    <nav className={`bg-white shadow-sm py-4 w-full z-30 ${window.innerWidth >= 1024 ? 'lg:sticky lg:top-0' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold">
+          {/* Logo */}
+          <div className="text-xl sm:text-2xl font-bold">
             <span className="text-blue-600">Ratan</span>{" "}
             <span className="text-orange-500">Constructions</span>
           </div>
@@ -33,19 +34,19 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
           {/* Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden"
+            className="lg:hidden p-2"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden lg:flex space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`font-medium transition-colors ${
+                className={`text-base font-medium transition-colors ${
                   location.pathname === link.to
                     ? "text-blue-800 border-b-2 border-blue-800"
                     : "text-gray-600 hover:text-blue-800"
@@ -57,7 +58,7 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
             {showContact && (
               <Link
                 to="/contact"
-                className={`font-medium transition-colors ${
+                className={`text-base font-medium transition-colors ${
                   location.pathname === "/contact"
                     ? "text-blue-800 border-b-2 border-blue-800"
                     : "text-gray-600 hover:text-blue-800"
@@ -73,13 +74,13 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
         <div
           className={`${
             isOpen ? "block" : "hidden"
-          } md:hidden mt-4 space-y-4`}
+          } lg:hidden mt-4 space-y-2 pb-2`}
         >
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`block font-medium transition-colors ${
+              className={`block py-2 text-base font-medium transition-colors ${
                 location.pathname === link.to
                   ? "text-blue-800 border-b-2 border-blue-800"
                   : "text-gray-600 hover:text-blue-800"
@@ -92,7 +93,7 @@ export default function MainNavbar({ showContact = true }: MainNavbarProps) {
           {showContact && (
             <Link
               to="/contact"
-              className={`block font-medium transition-colors ${
+              className={`block py-2 text-base font-medium transition-colors ${
                 location.pathname === "/contact"
                   ? "text-blue-800 border-b-2 border-blue-800"
                   : "text-gray-600 hover:text-blue-800"
