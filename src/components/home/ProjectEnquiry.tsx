@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -25,8 +24,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
 
-// Updated schemas to include all necessary fields
-const fabricationSchema = z.object({
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Valid email is required"),
+  phone: z.string().min(10, "Valid phone number is required"),
+});
+
+const fabricationSchema = contactSchema.extend({
   structure: z.string().min(1, "Structure type is required"),
   material: z.string().min(1, "Material grade is required"),
   dimensions: z.string().min(1, "Dimensions are required"),
@@ -36,7 +40,7 @@ const fabricationSchema = z.object({
   notes: z.string().optional(),
 });
 
-const civilSchema = z.object({
+const civilSchema = contactSchema.extend({
   foundation: z.string().min(1, "Foundation type is required"),
   area: z.string().min(1, "Site area is required"),
   soil: z.string().min(1, "Soil type is required"),
@@ -46,7 +50,7 @@ const civilSchema = z.object({
   notes: z.string().optional(),
 });
 
-const solarSchema = z.object({
+const solarSchema = contactSchema.extend({
   capacity: z.string().min(1, "System capacity is required"),
   mounting: z.string().min(1, "Mounting type is required"),
   modules: z.string().min(1, "Number of modules is required"),
@@ -56,21 +60,21 @@ const solarSchema = z.object({
   notes: z.string().optional(),
 });
 
-const infrastructureSchema = z.object({
+const infrastructureSchema = contactSchema.extend({
   project_type: z.string().min(1, "Project type is required"),
   area: z.string().min(1, "Area is required"),
   budget: z.string().min(1, "Budget is required"),
   notes: z.string().optional(),
 });
 
-const transmissionSchema = z.object({
+const transmissionSchema = contactSchema.extend({
   length: z.string().min(1, "Line length is required"),
   voltage: z.string().min(1, "Voltage level is required"),
   tower_type: z.string().min(1, "Tower type is required"),
   notes: z.string().optional(),
 });
 
-const turnkeySchema = z.object({
+const turnkeySchema = contactSchema.extend({
   scope: z.string().min(1, "Project scope is required"),
   location: z.string().min(1, "Location is required"),
   timeline: z.string().min(1, "Timeline is required"),
@@ -80,6 +84,7 @@ const turnkeySchema = z.object({
 const ProjectEnquiry = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("fabrication");
+  const [isLoading, setIsLoading] = useState(false);
   
   const getFormSchema = () => {
     switch (activeTab) {
@@ -96,7 +101,9 @@ const ProjectEnquiry = () => {
   const form = useForm({
     resolver: zodResolver(getFormSchema()),
     defaultValues: {
-      // Include all field names from all schemas
+      name: "",
+      email: "",
+      phone: "",
       structure: "",
       material: "",
       dimensions: "",
@@ -126,14 +133,41 @@ const ProjectEnquiry = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
+    setIsLoading(true);
     console.log("Form data:", data);
     console.log("Active tab:", activeTab);
-    toast({
-      title: "Enquiry Submitted",
-      description: "We'll get back to you shortly.",
-    });
-    form.reset();
+    
+    try {
+      const response = await fetch("https://formsubmit.co/your-email@example.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: activeTab,
+          ...data
+        }),
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Enquiry Submitted",
+          description: "We'll get back to you shortly.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to submit form");
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Please try again later or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleTabChange = (value: string) => {
@@ -149,41 +183,88 @@ const ProjectEnquiry = () => {
       </h2>
 
       <Tabs defaultValue="fabrication" className="w-full max-w-5xl mx-auto" onValueChange={handleTabChange}>
-        <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
-          <TabsTrigger value="fabrication" className="flex gap-2 items-center">
-            <Construction className="w-4 h-4" />
-            <span className="hidden md:inline">Steel Fabrication</span>
-            <span className="md:hidden">Fabrication</span>
-          </TabsTrigger>
-          <TabsTrigger value="civil" className="flex gap-2 items-center">
-            <Building className="w-4 h-4" />
-            <span className="hidden md:inline">Civil Foundations</span>
-            <span className="md:hidden">Civil</span>
-          </TabsTrigger>
-          <TabsTrigger value="solar" className="flex gap-2 items-center">
-            <Sun className="w-4 h-4" />
-            <span className="hidden md:inline">Solar Erection</span>
-            <span className="md:hidden">Solar</span>
-          </TabsTrigger>
-          <TabsTrigger value="infrastructure" className="flex gap-2 items-center">
-            <Building className="w-4 h-4" />
-            <span className="hidden md:inline">Infrastructure</span>
-            <span className="md:hidden">Infra</span>
-          </TabsTrigger>
-          <TabsTrigger value="transmission" className="flex gap-2 items-center">
-            <Power className="w-4 h-4" />
-            <span className="hidden md:inline">Transmission</span>
-            <span className="md:hidden">Trans</span>
-          </TabsTrigger>
-          <TabsTrigger value="turnkey" className="flex gap-2 items-center">
-            <Building className="w-4 h-4" />
-            <span className="hidden md:inline">Turnkey Projects</span>
-            <span className="md:hidden">Turnkey</span>
-          </TabsTrigger>
-        </TabsList>
+        <div className="overflow-x-auto pb-4">
+          <TabsList className="inline-flex min-w-full md:grid md:grid-cols-6 gap-2">
+            <TabsTrigger value="fabrication" className="flex gap-2 items-center whitespace-nowrap">
+              <Construction className="w-4 h-4" />
+              <span className="hidden sm:inline">Steel Fabrication</span>
+              <span className="sm:hidden">Fabric.</span>
+            </TabsTrigger>
+            <TabsTrigger value="civil" className="flex gap-2 items-center whitespace-nowrap">
+              <Building className="w-4 h-4" />
+              <span className="hidden sm:inline">Civil Foundations</span>
+              <span className="sm:hidden">Civil</span>
+            </TabsTrigger>
+            <TabsTrigger value="solar" className="flex gap-2 items-center whitespace-nowrap">
+              <Sun className="w-4 h-4" />
+              <span className="hidden sm:inline">Solar Erection</span>
+              <span className="sm:hidden">Solar</span>
+            </TabsTrigger>
+            <TabsTrigger value="infrastructure" className="flex gap-2 items-center whitespace-nowrap">
+              <Building className="w-4 h-4" />
+              <span className="hidden sm:inline">Infrastructure</span>
+              <span className="sm:hidden">Infra</span>
+            </TabsTrigger>
+            <TabsTrigger value="transmission" className="flex gap-2 items-center whitespace-nowrap">
+              <Power className="w-4 h-4" />
+              <span className="hidden sm:inline">Transmission</span>
+              <span className="sm:hidden">Trans</span>
+            </TabsTrigger>
+            <TabsTrigger value="turnkey" className="flex gap-2 items-center whitespace-nowrap">
+              <Building className="w-4 h-4" />
+              <span className="hidden sm:inline">Turnkey Projects</span>
+              <span className="sm:hidden">Turnkey</span>
+            </TabsTrigger>
+          </TabsList>
+        </div>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+              <h3 className="font-medium text-lg mb-4">Contact Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Your name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="your.email@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder="Your phone number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+
             <TabsContent value="fabrication">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
@@ -803,8 +884,12 @@ const ProjectEnquiry = () => {
             </TabsContent>
 
             <div className="flex justify-center mt-6">
-              <Button type="submit" className="bg-[#e73d2a] hover:bg-[#d13324] w-full md:w-auto">
-                Submit Enquiry
+              <Button 
+                type="submit" 
+                className="bg-[#e73d2a] hover:bg-[#d13324] w-full md:w-auto"
+                disabled={isLoading}
+              >
+                {isLoading ? "Submitting..." : "Submit Enquiry"}
               </Button>
             </div>
           </form>
