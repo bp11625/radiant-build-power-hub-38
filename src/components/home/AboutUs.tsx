@@ -1,5 +1,5 @@
-
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
@@ -32,9 +32,11 @@ const AboutUs = () => {
             project we undertake.
           </p>
           
-          <Button className="bg-red-500 hover:bg-red-600 text-white px-8">
-            Learn More
-          </Button>
+          <Link to="/about">
+            <Button className="bg-red-500 hover:bg-red-600 text-white px-8">
+              Learn More
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

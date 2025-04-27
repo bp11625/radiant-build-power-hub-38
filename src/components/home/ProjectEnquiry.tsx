@@ -139,7 +139,7 @@ const ProjectEnquiry = () => {
     console.log("Active tab:", activeTab);
     
     try {
-      const response = await fetch("https://formsubmit.co/your-email@example.com", {
+      const response = await fetch("https://formsubmit.co/bhanuprakash00045@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -212,7 +212,7 @@ const ProjectEnquiry = () => {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-gray-50 rounded-lg">
               <h3 className="font-medium text-lg mb-4">Contact Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <FormField

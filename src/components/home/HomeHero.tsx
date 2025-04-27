@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const HERO_VIDEOS = [
   "https://www.w3schools.com/html/mov_bbb.mp4",
@@ -42,12 +43,16 @@ const HomeHero = () => {
           We provide high-quality construction services for residential and commercial properties
         </p>
         <div className="flex flex-wrap gap-4 mb-6">
-          <button className="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded transition-colors">
-            Our Services
-          </button>
-          <button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium py-3 px-6 rounded transition-colors">
-            Contact Us
-          </button>
+          <Link to="/services">
+            <button className="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded transition-colors">
+              Our Services
+            </button>
+          </Link>
+          <Link to="/contact">
+            <button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium py-3 px-6 rounded transition-colors">
+              Contact Us
+            </button>
+          </Link>
         </div>
       </div>
     </section>
