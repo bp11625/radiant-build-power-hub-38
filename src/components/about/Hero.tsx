@@ -1,45 +1,54 @@
 
 import React, { useState, useEffect } from 'react';
 
-const HERO_VIDEOS = [
-  "https://www.w3schools.com/html/mov_bbb.mp4",
-  "https://www.w3schools.com/html/movie.mp4",
-  "https://www.w3schools.com/html/mov_bbb.mp4"
+const HERO_CONTENT = [
+  {
+    video: "https://www.w3schools.com/html/mov_bbb.mp4",
+    text: "Building Excellence Through Innovation"
+  },
+  {
+    video: "https://www.w3schools.com/html/movie.mp4",
+    text: "Creating Sustainable Solutions"
+  },
+  {
+    video: "https://www.w3schools.com/html/mov_bbb.mp4",
+    text: "Transforming Vision Into Reality"
+  }
 ];
 
 const Hero = () => {
-  const [currentVideo, setCurrentVideo] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
+      setCurrentSlide((prev) => (prev + 1) % HERO_CONTENT.length);
     }, 2500);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative h-[600px] overflow-hidden">
-      {/* Video Background */}
       <div className="absolute inset-0 w-full h-full flex z-0">
         <div className="flex-1 h-full relative overflow-hidden">
           <video
-            key={currentVideo}
-            src={HERO_VIDEOS[currentVideo]}
+            key={currentSlide}
+            src={HERO_CONTENT[currentSlide].video}
             loop
             muted
             playsInline
             autoPlay
             className="w-full h-full object-cover video-float-0"
           />
-          {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/40" />
         </div>
       </div>
 
-      {/* Hero Content */}
       <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-white">
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-center">
-          Building Excellence Through Innovation
+        <h1 
+          key={currentSlide}
+          className="text-4xl md:text-5xl lg:text-7xl font-bold text-center animate-fade-in"
+        >
+          {HERO_CONTENT[currentSlide].text}
         </h1>
       </div>
     </section>
