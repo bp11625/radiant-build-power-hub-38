@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -24,6 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
 
+// Updated schemas to include all necessary fields
 const fabricationSchema = z.object({
   structure: z.string().min(1, "Structure type is required"),
   material: z.string().min(1, "Material grade is required"),
@@ -94,16 +96,25 @@ const ProjectEnquiry = () => {
   const form = useForm({
     resolver: zodResolver(getFormSchema()),
     defaultValues: {
+      // Include all field names from all schemas
       structure: "",
       material: "",
       dimensions: "",
       quantity: "",
+      finish: "",
+      delivery_timeline: "",
       foundation: "",
       area: "",
       soil: "",
+      construction_type: "",
+      timeline: "",
+      budget_range: "",
       capacity: "",
       mounting: "",
       modules: "",
+      inverter_type: "",
+      battery_storage: "",
+      site_location: "",
       project_type: "",
       budget: "",
       length: "",
@@ -111,7 +122,6 @@ const ProjectEnquiry = () => {
       tower_type: "",
       scope: "",
       location: "",
-      timeline: "",
       notes: "",
     },
   });

@@ -1,3 +1,4 @@
+
 import React from "react";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
@@ -9,7 +10,7 @@ export default function Clients() {
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar />
       <main className="container mx-auto px-4 py-8">
-        <Heading>Our Clients</Heading>
+        <Heading title="Our Clients" />
         {/* Who we serve + Our Clients */}
         <section className="mb-12">
           <h2 className="text-orange-600 uppercase font-bold text-xl mb-2">Who We Serve</h2>

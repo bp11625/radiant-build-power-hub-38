@@ -2,10 +2,11 @@
 import React from "react";
 
 interface HeadingProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   center?: boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Heading: React.FC<HeadingProps> = ({
@@ -13,7 +14,10 @@ const Heading: React.FC<HeadingProps> = ({
   subtitle,
   center,
   className = "",
+  children,
 }) => {
+  const headingText = title || children;
+  
   return (
     <div
       className={`
@@ -23,7 +27,7 @@ const Heading: React.FC<HeadingProps> = ({
     >
       <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">
         <span className="relative pb-2">
-          {title}
+          {headingText}
           <span className="absolute bottom-0 left-0 w-full h-1 bg-orange-500"></span>
         </span>
       </h2>

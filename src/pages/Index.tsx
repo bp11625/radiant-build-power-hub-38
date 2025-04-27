@@ -77,7 +77,7 @@ export default function Index() {
         {/* Services Section */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
-            <Heading>Our Services</Heading>
+            <Heading title="Our Services" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               {/* Service 1 */}
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -144,7 +144,7 @@ export default function Index() {
         {/* Recent Projects Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <Heading>Recent Projects</Heading>
+            <Heading title="Recent Projects" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               {/* Project 1 */}
               <div className="group rounded-lg overflow-hidden shadow-md">

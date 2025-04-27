@@ -30,7 +30,7 @@ export default function Services() {
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar showContact={false} />
       <main className="container mx-auto px-4 py-8">
-        <Heading>Our Services</Heading>
+        <Heading title="Our Services" />
         <section className="py-10 rounded-xl bg-gray-50 mb-12">
           <div className="flex flex-col md:flex-row items-center gap-8 justify-center">
             <div className="flex flex-col items-center md:items-start w-full md:w-1/4 text-center md:text-left">

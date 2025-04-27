@@ -11,7 +11,7 @@ export default function Contact() {
     <div className="min-h-screen bg-background text-foreground">
       <MainNavbar />
       <main className="container mx-auto px-4 py-8">
-        <Heading>Contact Us</Heading>
+        <Heading title="Contact Us" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 py-12">
           <div className="space-y-6">
             <h2 className="text-2xl font-bold">Get In Touch</h2>
