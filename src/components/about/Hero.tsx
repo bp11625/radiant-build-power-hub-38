@@ -1,31 +1,30 @@
 
 import React, { useState } from 'react';
-import { Button } from "../ui/button";
 
-const videoData = [
+const heroData = [
   {
     id: 1,
     title: "Construction Management",
-    description: "Expert management of construction projects from start to finish",
-    image: "https://picsum.photos/seed/1/800/600",
+    subtitle: "Expert Solutions",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 2,
-    title: "Architecture & Design",
-    description: "Innovative architectural solutions for modern needs",
-    image: "https://picsum.photos/seed/2/800/600",
+    title: "Building Design",
+    subtitle: "Creative Vision",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 3,
-    title: "Renovation Projects",
-    description: "Transforming spaces with expert renovation services",
-    image: "https://picsum.photos/seed/3/800/600",
+    title: "Project Planning",
+    subtitle: "Smart Execution",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 4,
-    title: "Safety & Compliance",
-    description: "Ensuring all projects meet safety standards",
-    image: "https://picsum.photos/seed/4/800/600",
+    title: "Quality Assurance",
+    subtitle: "Perfect Results",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -60,11 +59,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 -mt-32 relative z-30 pb-16">
         <div className="bg-white rounded-lg shadow-xl p-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {videoData.map((item, index) => (
+            {heroData.map((item) => (
               <div
                 key={item.id}
                 className="group relative"
-                onMouseEnter={() => setHoveredItem(index)}
+                onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <div className="aspect-video rounded-lg overflow-hidden">
@@ -75,7 +74,7 @@ const Hero = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                     <h3 className="text-white font-bold text-lg">{item.title}</h3>
-                    <p className="text-gray-200 text-sm mt-2">{item.description}</p>
+                    <p className="text-gray-200 text-sm mt-2">{item.subtitle}</p>
                   </div>
                 </div>
               </div>
