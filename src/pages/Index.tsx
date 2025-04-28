@@ -4,7 +4,7 @@ import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
 import AboutUs from "@/components/home/AboutUs";
 import CounterSection from "@/components/home/CounterSection";
-import ProjectEnquiry from "@/components/home/project-enquiry/ProjectEnquiry";
+import ProjectEnquiry from "@/components/home/ProjectEnquiry";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import HomeHero from "@/components/home/HomeHero";
 import ServicesSection from "@/components/home/ServicesSection";
@@ -21,6 +21,7 @@ export default function Index() {
         <ProjectEnquiry />
         <ServicesSection />
         <ProjectsSection />
+        <ProjectEnquiry />
         <WhyChooseUs />
       </main>
       <Footer />
