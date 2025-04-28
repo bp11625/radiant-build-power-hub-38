@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "../components/ui/button";
 import MainNavbar from "@/components/layout/MainNavbar";
 
-// Generate 50 projects with different tags
 const generateProjects = () => {
   const tags = ['Commercial', 'Residential', 'Industrial', 'Infrastructure', 'Renovation', 
                 'Sustainable', 'Healthcare', 'Education', 'Hospitality', 'Government'];
   
   const projects = [];
   for (let i = 1; i <= 50; i++) {
-    // Assign 1-3 random tags to each project
     const projectTags = [];
     const numTags = Math.floor(Math.random() * 3) + 1;
     for (let j = 0; j < numTags; j++) {
@@ -35,34 +33,43 @@ const generateProjects = () => {
 
 const allProjects = generateProjects();
 
+const BACKGROUND_IMAGES = [
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+  "https://images.unsplash.com/photo-1531297484001-80022131f5a1"
+];
+
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeFilter, setActiveFilter] = useState('All');
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const projectsPerPage = 10;
   
-  // Get all unique tags
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBgIndex((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const allTags = ['All', ...new Set(allProjects.flatMap(project => project.tags))];
   
-  // Filter projects based on active filter
   const filteredProjects = activeFilter === 'All' 
     ? allProjects 
     : allProjects.filter(project => project.tags.includes(activeFilter));
   
-  // Get current projects
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
   
-  // Calculate total pages
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
   
-  // Handle page navigation
   const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
   
-  // Generate page numbers
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
@@ -70,9 +77,23 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <MainNavbar />
-      <div className="bg-blue-900 text-white py-20">
-        <div className="container mx-auto px-4">
+      <MainNavbar showContact={true} />
+      <div className="relative bg-blue-900 text-white py-20 overflow-hidden">
+        {BACKGROUND_IMAGES.map((img, index) => (
+          <div
+            key={img}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentBgIndex ? 'opacity-30' : 'opacity-0'
+            }`}
+          >
+            <img
+              src={img}
+              alt={`Background ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+        <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Projects</h1>
           <p className="text-xl max-w-2xl opacity-90">
             Explore our diverse portfolio of construction projects spanning various sectors and locations.
@@ -81,7 +102,6 @@ const Projects = () => {
       </div>
       
       <div className="container mx-auto px-4 py-12">
-        {/* Filters */}
         <div className="mb-10 overflow-x-auto">
           <div className="flex flex-nowrap space-x-2 pb-2 min-w-full">
             {allTags.map(tag => (
@@ -103,7 +123,6 @@ const Projects = () => {
           </div>
         </div>
         
-        {/* Project Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentProjects.map((project) => (
             <div key={project.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all">
@@ -133,7 +152,6 @@ const Projects = () => {
           ))}
         </div>
         
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="mt-12 flex justify-center">
             <div className="flex items-center space-x-1">
@@ -175,7 +193,6 @@ const Projects = () => {
           </div>
         )}
         
-        {/* Project count */}
         <div className="mt-6 text-center text-gray-500">
           Showing {indexOfFirstProject + 1}-{Math.min(indexOfLastProject, filteredProjects.length)} of {filteredProjects.length} projects
         </div>

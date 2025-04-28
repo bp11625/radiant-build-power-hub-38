@@ -1,8 +1,15 @@
 
 import React from 'react';
 import Heading from '@/components/ui/Heading';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectsSection = () => {
+  const navigate = useNavigate();
+
+  const handleViewProject = (projectId: string) => {
+    navigate(`/projects?project=${projectId}`);
+  };
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -12,16 +19,19 @@ const ProjectsSection = () => {
             image="https://images.unsplash.com/photo-1621335223658-0ebd89004d51?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
             title="Luxury Villa"
             category="Residential Project"
+            onClick={() => handleViewProject('luxury-villa')}
           />
           <ProjectCard
             image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
             title="Office Tower"
             category="Commercial Project"
+            onClick={() => handleViewProject('office-tower')}
           />
           <ProjectCard
             image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
             title="Modern Apartment"
             category="Residential Project"
+            onClick={() => handleViewProject('modern-apartment')}
           />
         </div>
         <div className="text-center mt-12">
@@ -36,7 +46,7 @@ const ProjectsSection = () => {
   );
 };
 
-const ProjectCard = ({ image, title, category }: { image: string; title: string; category: string }) => (
+const ProjectCard = ({ image, title, category, onClick }: { image: string; title: string; category: string; onClick: () => void }) => (
   <div className="group rounded-lg overflow-hidden shadow-md">
     <div className="relative h-64 overflow-hidden">
       <img
@@ -45,7 +55,12 @@ const ProjectCard = ({ image, title, category }: { image: string; title: string;
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-        <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Project</button>
+        <button 
+          onClick={onClick}
+          className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+        >
+          View Project
+        </button>
       </div>
     </div>
     <div className="p-6 bg-white">
