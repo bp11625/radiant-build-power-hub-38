@@ -21,7 +21,6 @@ export default function Index() {
         <ProjectEnquiry />
         <ServicesSection />
         <ProjectsSection />
-        <ProjectEnquiry />
         <WhyChooseUs />
       </main>
       <Footer />

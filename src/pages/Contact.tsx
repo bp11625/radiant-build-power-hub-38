@@ -1,40 +1,77 @@
 
 import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import MainNavbar from "@/components/layout/MainNavbar";
 import Footer from "@/components/about/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import Heading from "@/components/ui/Heading";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+
+const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  message: z.string().min(5, "Message must be at least 5 characters"),
+});
 
 export default function Contact() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState(false);
-  const [webhookUrl, setWebhookUrl] = React.useState("YOUR_ZAPIER_WEBHOOK_URL"); // Replace with your Zapier webhook URL
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: ""
+    },
+  });
+
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
 
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData.entries());
-
     try {
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify(data),
+      // Create a hidden form to submit to formsubmit.co
+      const formElement = document.createElement("form");
+      formElement.method = "POST";
+      formElement.action = "https://formsubmit.co/bhanuprakash00045@gmail.com";
+      formElement.target = "_blank";
+
+      // Add form data
+      Object.entries(values).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value?.toString() || "";
+        formElement.appendChild(input);
       });
+
+      // Submit the form
+      document.body.appendChild(formElement);
+      formElement.submit();
+      document.body.removeChild(formElement);
 
       toast({
         title: "Success!",
         description: "Your message has been sent successfully.",
       });
       
-      (e.target as HTMLFormElement).reset();
+      form.reset();
     } catch (error) {
       toast({
         title: "Error",
@@ -57,29 +94,90 @@ export default function Contact() {
             <p className="text-gray-600">
               Fill out the form and our team will get back to you within 24 hours.
             </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input name="firstName" placeholder="First Name" className="w-full" required />
-                <Input name="lastName" placeholder="Last Name" className="w-full" required />
-              </div>
-              <Input name="email" placeholder="Email" type="email" className="w-full" required />
-              <Input name="phone" placeholder="Phone" type="tel" className="w-full" required />
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows={5}
-                className="w-full p-3 border border-gray-300 rounded-md text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              ></textarea>
-              <Button 
-                type="submit" 
-                className="bg-red-500 hover:bg-red-600 text-white w-full md:w-auto px-8"
-                disabled={isLoading}
-              >
-                {isLoading ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="First Name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="Last Name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input placeholder="Email" type="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input placeholder="Phone" type="tel" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Your Message"
+                          rows={5}
+                          className="w-full p-3 border border-gray-300 rounded-md text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <Button 
+                  type="submit" 
+                  className="bg-red-500 hover:bg-red-600 text-white w-full md:w-auto px-8"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
+            </Form>
           </div>
+          
           <div className="space-y-6">
             <h2 className="text-2xl font-bold">Contact Information</h2>
             <div className="space-y-4">
